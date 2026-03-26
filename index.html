@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharpos Mobile Support & Privacy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #eef5ff;
+            --card: rgba(255, 255, 255, 0.92);
+            --text: #162235;
+            --muted: #5b6778;
+            --accent: #0c8bff;
+            --accent-2: #0a5fd7;
+            --border: #d7e4f5;
+            --shadow: 0 20px 55px rgba(16, 44, 92, 0.12);
+            --radius: 18px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 20% 18%, rgba(12, 139, 255, 0.1) 0, transparent 26%),
+                radial-gradient(circle at 80% 12%, rgba(10, 95, 215, 0.12) 0, transparent 30%),
+                linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 28px 22px 80px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.08rem;
+            letter-spacing: 0.4px;
+        }
+
+        .logo-box {
+            width: auto;
+            height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .logo-fallback {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #0c8bff, #0a5fd7);
+            box-shadow: 0 12px 35px rgba(12, 139, 255, 0.35);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .chip {
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(12, 139, 255, 0.08);
+            color: var(--accent-2);
+            font-weight: 600;
+            border: 1px solid #d4e6ff;
+        }
+
+        .hero {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 26px;
+            align-items: center;
+        }
+
+        .hero-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: calc(var(--radius) + 6px);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            animation: rise 0.8s ease;
+        }
+
+        .hero-card:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 70% 0%, rgba(12, 139, 255, 0.12), transparent 32%);
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            color: var(--accent-2);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            margin: 12px 0 10px;
+            font-size: 2.25rem;
+            line-height: 1.15;
+        }
+
+        .lede {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.96rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0c8bff, #0a5fd7);
+            color: #fff;
+            box-shadow: 0 12px 30px rgba(12, 139, 255, 0.32);
+        }
+
+        .btn-ghost {
+            background: #eff6ff;
+            color: var(--accent-2);
+            border: 1px solid #d4e6ff;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .support-highlights {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .pill {
+            background: rgba(12, 139, 255, 0.08);
+            border: 1px dashed #cfe2ff;
+            border-radius: 14px;
+            padding: 10px 12px;
+            font-weight: 600;
+            color: #0a5fd7;
+        }
+
+        .support-grid {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            animation: rise 0.8s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h3 {
+            margin: 4px 0 6px;
+            font-size: 1.16rem;
+        }
+
+        .card p {
+            margin: 0 0 12px;
+            color: var(--muted);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(12, 139, 255, 0.14);
+            color: #0a5fd7;
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .section-title {
+            margin: 44px 0 12px;
+            font-size: 1.4rem;
+        }
+
+        .faq {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        details {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s ease;
+        }
+
+        details:last-of-type { border-bottom: none; }
+
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        details[open] { background: #eef6ff; }
+
+        .faq p { margin: 10px 0 0; color: var(--muted); }
+
+        .contact-bar {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .contact-card {
+            padding: 14px 16px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: #f3f8ff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-card strong { display: block; }
+
+        .tag {
+            padding: 8px 12px;
+            background: #e4f0ff;
+            color: #0a5fd7;
+            border-radius: 10px;
+            border: 1px solid #d4e6ff;
+            font-weight: 600;
+        }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 700px) {
+            h1 { font-size: 1.8rem; }
+            .page-shell { padding: 20px 16px 60px; }
+            .topbar { align-items: flex-start; flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <div class="topbar">
+            <div class="brand">
+                <div class="logo-box">
+                    <div class="logo-fallback">SM</div>
+                </div>
+                <span>Support</span>
+            </div>
+            <div class="chip">Email: support@sharposmobile.com</div>
+        </div>
+
+        <section class="hero">
+            <div class="hero-card">
+                <div class="eyebrow">Mobile POS support</div>
+                <h1>Sharpos Mobile lets users view all key POS data in one simple mobile app.</h1>
+                <p class="lede">Sharpos Mobile is a lightweight companion app connected to your main POS database. Users sign in with accounts created by an admin and can quickly view sales, orders, inventory, and reports from a phone or tablet.</p>
+                <div class="cta-row">
+                    <a class="btn btn-primary" href="mailto:support@sharposmobile.com">Email support</a>
+                    <a class="btn btn-ghost" href="privacy.html">View privacy policy</a>
+                </div>
+                <div class="support-highlights">
+                    <div class="pill">Read-only POS data visibility</div>
+                    <div class="pill">Admin-created user access</div>
+                    <div class="pill">Fast reporting and sync support</div>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <div class="badge">App overview</div>
+                <h3>What you can do in Sharpos Mobile</h3>
+                <ul style="margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.6;">
+                    <li>View sales, transactions, and receipt information from the POS database.</li>
+                    <li>Check live orders, payment status, and day-to-day store activity.</li>
+                    <li>See products, inventory levels, and stock-related information in one place.</li>
+                    <li>Open dashboards and reports optimized for mobile viewing.</li>
+                    <li>Sign in using an account created by your system admin.</li>
+                    <li>Use the app as a simple visibility layer without entering customer data.</li>
+                </ul>
+                <div class="support-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top: 14px;">
+                    <div class="card" style="padding: 14px;">
+                        <strong>Live visibility</strong>
+                        <p style="margin: 4px 0 8px;">See POS data clearly from a mobile screen.</p>
+                        <div class="tag">Real-time</div>
+                    </div>
+                    <div class="card" style="padding: 14px;">
+                        <strong>Admin-controlled access</strong>
+                        <p style="margin: 4px 0 8px;">Accounts are created and managed by your admin.</p>
+                        <div class="tag">Cloud sync</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-title">Popular support topics</h2>
+        <div class="support-grid">
+            <div class="card">
+                <div class="badge">Account</div>
+                <h3>Admin-created login access</h3>
+                <p>Get help with sign-in problems, password resets, and accounts created by your business admin.</p>
+                <a class="btn btn-ghost" href="mailto:support@sharposmobile.com?subject=Sharpos%20Mobile%20Account%20Help" role="button">Get help</a>
+            </div>
+            <div class="card">
+                <div class="badge">Sales</div>
+                <h3>Sales and receipts view</h3>
+                <p>Review transaction history, receipt details, payment status, and daily sales information.</p>
+                <a class="btn btn-ghost" href="mailto:support@sharposmobile.com?subject=Sharpos%20Mobile%20Sales%20Help" role="button">Contact support</a>
+            </div>
+            <div class="card">
+                <div class="badge">Catalog</div>
+                <h3>Products and inventory view</h3>
+                <p>See product details, stock levels, and inventory data already stored in the POS system.</p>
+                <a class="btn btn-ghost" href="mailto:support@sharposmobile.com?subject=Sharpos%20Mobile%20Inventory%20Help" role="button">Ask a question</a>
+            </div>
+            <div class="card">
+                <div class="badge">Reports</div>
+                <h3>Reports and sync</h3>
+                <p>Check dashboard visibility, troubleshoot delayed updates, and confirm POS data is syncing properly.</p>
+                <a class="btn btn-ghost" href="mailto:support@sharposmobile.com?subject=Sharpos%20Mobile%20Reporting%20Help" role="button">Resolve issue</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">Quick answers</h2>
+        <div class="faq">
+            <details>
+                <summary>How do I get access to Sharpos Mobile?</summary>
+                <p>Your business admin creates user accounts for Sharpos Mobile. Once your account is ready, you can log in with the credentials provided by your admin.</p>
+            </details>
+            <details>
+                <summary>Can users create their own accounts?</summary>
+                <p>No. Sharpos Mobile does not support public sign-up. All user accounts are created and managed by the business admin.</p>
+            </details>
+            <details>
+                <summary>Can I update POS data from the mobile app?</summary>
+                <p>Sharpos Mobile is mainly for viewing information from the POS database. If data needs to be changed, it should usually be updated in the main POS system and then synced to the app.</p>
+            </details>
+            <details>
+                <summary>What should I do if the data is not updating?</summary>
+                <p>Check your connection, refresh the app, and sign in again if needed. If the latest POS data still does not appear, contact your admin or support with your device details and a screenshot.</p>
+            </details>
+        </div>
+
+        <div class="contact-bar">
+            <div class="contact-card">
+                <div class="tag">Chat</div>
+                <div>
+                    <strong>Admin-managed access</strong>
+                    <span>Your business admin controls account creation and user access.</span>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="tag">Email</div>
+                <div>
+                    <strong>support@sharposmobile.com</strong>
+                    <span>General support, account help, and privacy questions.</span>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="tag">Setup</div>
+                <div>
+                    <strong>POS connection assistance</strong>
+                    <span>Reach out for setup help, sync checks, and mobile data visibility guidance.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
